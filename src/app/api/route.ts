@@ -70,3 +70,35 @@ export async function GET(req: NextRequest) {
     );
   }
 }
+
+export async function DELETE(req: NextRequest) {
+  try {
+    const { searchParams } = new URL(req.url);
+    const id = searchParams.get("id");
+
+    if (!id) {
+      return NextResponse.json(
+        { error: "Missing ID parameter in DELETE request" },
+        { status: 400 },
+      );
+    }
+    const deletedEntity = contentEntities.find((entity) => entity.id === id);
+
+    if (!deletedEntity) {
+      return NextResponse.json(
+        { error: `Content with ID ${id} not found` },
+        { status: 404 },
+      );
+    }
+
+    contentEntities = contentEntities.filter((entity) => entity.id !== id);
+
+    return NextResponse.json(deletedEntity);
+  } catch (error) {
+    console.error("Error in DELETE request:", error);
+    return NextResponse.json(
+      { error: "Failed to delete content" },
+      { status: 500 },
+    );
+  }
+}
