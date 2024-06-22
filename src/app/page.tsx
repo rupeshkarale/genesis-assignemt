@@ -61,7 +61,7 @@ const Home: React.FC = () => {
       <button
         onClick={handleLogin}
         type="button"
-        className="bg-red-700 text-white text-xs py-2 px-6 rounded-md hover:bg-red-800 focus:outline-none focus:ring-2 focus:ring-red-700"
+        className="bg-red-700 text-white text-xs py-1 px-3 sm:px-6 sm:py-2 rounded-md hover:bg-red-800 focus:outline-none focus:ring-2 focus:ring-red-700"
       >
         {session ? "SIGN - OUT" : "SIGN-IN"}
       </button>
