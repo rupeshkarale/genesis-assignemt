@@ -14,7 +14,7 @@ const Note = ({
   handleDelete: (id: string) => Promise<void>;
 }) => {
   return (
-    <div className="w-1/2 gap-3">
+    <div className="w-full sm:w-1/2 gap-3">
       <div className="flex justify-between p-2 items-center ">
         <h2 className="  text-cyan-400 text-xl">POST NO {index + 1} </h2>
 
@@ -34,7 +34,7 @@ const Note = ({
         </div>
       </div>
       <div
-        className=" p-5 border border-slate-200 border-solid  break-words rounded-lg "
+        className=" p-3 sm:p-5 border border-slate-200 border-solid  break-words rounded-lg "
         dangerouslySetInnerHTML={{ __html: content.content }}
       ></div>
     </div>
