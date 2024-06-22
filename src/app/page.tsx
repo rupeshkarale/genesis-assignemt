@@ -30,6 +30,15 @@ const Home: React.FC = () => {
       const response = await axios.get(`/api?id=${id}`);
       setEditContent(response.data);
       window.scrollTo({ top: 0, behavior: "smooth" });
+      //it will edit after onSubmit click
+    } catch (error) {
+      console.error("Error fetching content for edit:", error);
+    }
+  };
+  const handleDelete = async (id: string) => {
+    try {
+      await axios.delete(`/api?id=${id}`);
+      await fetchData();
     } catch (error) {
       console.error("Error fetching content for edit:", error);
     }
@@ -69,6 +78,7 @@ const Home: React.FC = () => {
             content={content}
             handleEdit={() => handleEdit(content.id)}
             index={index}
+            handleDelete={handleDelete}
           />
         ))}
       </div>
