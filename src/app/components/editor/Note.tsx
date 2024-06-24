@@ -1,17 +1,18 @@
 import React from "react";
 import { Content } from "../../api/route";
 import { Edit3, Trash } from "lucide-react";
+interface NoteProps {
+  handleEdit: (id: string) => Promise<void>;
+  handleDelete: (id: string) => Promise<void>;
+  content: Content;
+  index: number;
+}
 
-const Note = ({
+const Note: React.FC<NoteProps> = ({
   handleEdit,
   content,
   index,
   handleDelete,
-}: {
-  handleEdit: (index: string) => Promise<void>;
-  content: Content;
-  index: number;
-  handleDelete: (id: string) => Promise<void>;
 }) => {
   return (
     <div className="w-full sm:w-1/2 gap-3">

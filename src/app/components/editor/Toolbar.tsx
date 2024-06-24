@@ -16,7 +16,7 @@ type ToolBarProps = {
   editor: Editor | null;
 };
 
-const ToolBar = ({ editor }: ToolBarProps) => {
+const ToolBar: React.FC<ToolBarProps> = ({ editor }) => {
   if (!editor) {
     return null;
   }

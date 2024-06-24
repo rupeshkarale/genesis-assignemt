@@ -1,10 +1,10 @@
 "use client";
 
 import React from "react";
-import { signIn, } from "next-auth/react";
+import { signIn } from "next-auth/react";
 
-const Signin = () => {
-  const handleSignIn = async () => {
+const Signin: React.FC = () => {
+  const handleSignIn = async (): Promise<void> => {
     try {
       await signIn("google");
     } catch (error) {

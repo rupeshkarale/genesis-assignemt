@@ -18,7 +18,7 @@ const Home: React.FC = () => {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get(`/api`);
+      const response = await axios.get<Content[]>(`/api`);
       setContentList(response.data);
     } catch (error) {
       console.error("Error fetching content:", error);
@@ -27,7 +27,7 @@ const Home: React.FC = () => {
 
   const handleEdit = async (id: string) => {
     try {
-      const response = await axios.get(`/api?id=${id}`);
+      const response = await axios.get<Content>(`/api?id=${id}`);
       setEditContent(response.data);
       window.scrollTo({ top: 0, behavior: "smooth" });
       //it will edit after onSubmit click
@@ -48,7 +48,7 @@ const Home: React.FC = () => {
     setEditContent(null);
   };
 
-  const handleLogin = () => {
+  const handleLogin = (): void => {
     if (session) {
       signOut();
     } else {
