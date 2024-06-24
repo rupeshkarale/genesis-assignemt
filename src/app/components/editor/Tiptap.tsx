@@ -4,11 +4,9 @@ import StarterKit from "@tiptap/starter-kit";
 import ToolBar from "./Toolbar";
 import Underline from "@tiptap/extension-underline";
 import FontFamily from "@tiptap/extension-font-family";
-import Text from "@tiptap/extension-text";
 import TextStyle from "@tiptap/extension-text-style";
 import Link from "@tiptap/extension-link";
 import Code from "@tiptap/extension-code";
-import Document from "@tiptap/extension-document";
 interface TiptapProps {
   content: string;
   onChange: (newContent: string) => void;
@@ -21,12 +19,10 @@ const Tiptap: React.FC<TiptapProps> = ({ content, onChange }) => {
 
   const editor = useEditor({
     extensions: [
-      Document,
       StarterKit.configure({
         heading: false,
       }),
       Underline,
-      Text,
       TextStyle,
       FontFamily,
       Link.configure({

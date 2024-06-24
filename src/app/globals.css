@@ -37,3 +37,8 @@ body {
     text-wrap: balance;
   }
 }
+
+.ProseMirror * {
+  white-space: normal;
+  word-break: break-word;
+}
