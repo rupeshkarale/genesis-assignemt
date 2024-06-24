@@ -150,7 +150,7 @@ const ToolBar = ({ editor }: ToolBarProps) => {
         <button
           onClick={(e) => {
             e.preventDefault();
-            editor.chain().focus().setCode().run();
+            editor.chain().focus().toggleCode().run();
           }}
           className={
             editor.isActive("code")

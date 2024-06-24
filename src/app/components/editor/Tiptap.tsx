@@ -7,7 +7,8 @@ import FontFamily from "@tiptap/extension-font-family";
 import Text from "@tiptap/extension-text";
 import TextStyle from "@tiptap/extension-text-style";
 import Link from "@tiptap/extension-link";
-
+import Code from "@tiptap/extension-code";
+import Document from "@tiptap/extension-document";
 interface TiptapProps {
   content: string;
   onChange: (newContent: string) => void;
@@ -20,7 +21,10 @@ const Tiptap: React.FC<TiptapProps> = ({ content, onChange }) => {
 
   const editor = useEditor({
     extensions: [
-      StarterKit,
+      Document,
+      StarterKit.configure({
+        heading: false,
+      }),
       Underline,
       Text,
       TextStyle,
@@ -29,13 +33,20 @@ const Tiptap: React.FC<TiptapProps> = ({ content, onChange }) => {
         openOnClick: false,
         autolink: true,
       }),
+      Code.configure({
+        HTMLAttributes: {
+          class: "bg-gray-800  px-3 py-1",
+        },
+      }),
     ],
+
     editorProps: {
       attributes: {
         class:
-          "flex flex-col px-10 py-3 justify-start border-b border-r border-l border-gray-700 text-gray-400 items-start w-full gap-3  pt-4 rounded-bl-md rounded-br-md outline-none",
+          " w-full gap-3 px-5 py-3 border-b border-r border-l border-gray-700 prose prose-sm sm:prose-base lg:prose-lg xl:prose-2xl  focus:outline-none rounded-bl-md rounded-br-md  max-w-none [&_ol]:list-decimal [&_ul]:list-disc",
       },
     },
+
     onUpdate: ({ editor }) => {
       handleChange(editor.getHTML());
     },
@@ -50,8 +61,8 @@ const Tiptap: React.FC<TiptapProps> = ({ content, onChange }) => {
   return (
     <div className="w-full px-4">
       <ToolBar editor={editor} />
-      <div className="editor-container">
-        <EditorContent editor={editor} />
+      <div>
+        <EditorContent style={{ whiteSpace: "pre-line" }} editor={editor} />
       </div>
     </div>
   );

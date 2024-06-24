@@ -45,7 +45,7 @@ const NotePicker: React.FC<NotePickerProps> = ({
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    checkUserLogin();
+    await checkUserLogin();
     try {
       if (editContent) {
         await axios.put("/api", {

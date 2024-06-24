@@ -1,17 +1,26 @@
+import {  getServerSession } from "next-auth";
 import { NextRequest, NextResponse } from "next/server";
 
 export type Content = {
   id: string;
+  email: string;
   content: string;
 };
 
 let contentEntities: Content[] = [];
 
 export async function POST(req: Request) {
+  const session = await getServerSession();
+  if (!session?.user) {
+    return NextResponse.json(
+      { error: "Please log in to create a note." },
+      { status: 401 },
+    );
+  }
   try {
     const newContent = await req.json();
-    contentEntities.push(newContent);
-    return NextResponse.json(contentEntities);
+    contentEntities.push({ ...newContent, email: session.user.email });
+    return NextResponse.json(contentEntities, { status: 201 });
   } catch (error) {
     console.error("Error in POST request:", error);
     return NextResponse.json(
@@ -45,6 +54,12 @@ export async function PUT(req: Request) {
 }
 
 export async function GET(req: NextRequest) {
+  const session = await getServerSession();
+
+  if (!session?.user) {
+    return NextResponse.json([]);
+  }
+
   try {
     const { searchParams } = new URL(req.url);
     const id = searchParams.get("id");
@@ -60,7 +75,9 @@ export async function GET(req: NextRequest) {
         );
       }
     } else {
-      return NextResponse.json(contentEntities);
+      return NextResponse.json(
+        contentEntities.filter(({ email }) => email === session.user?.email),
+      );
     }
   } catch (error) {
     console.error("Error in GET request:", error);
