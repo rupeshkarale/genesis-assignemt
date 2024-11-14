@@ -2,6 +2,7 @@ import RedirectOnMount from "@/app/components/redirect";
 import axios from "axios";
 import dynamic from "next/dynamic";
 import Head from "next/head";
+import { useLayoutEffect } from "react";
 
 interface PageData {
   title: string;
@@ -78,7 +79,7 @@ const Page = async ({ params }: { params: { slug: string } }) => {
     <>
       <h1>{data.title}</h1>
       <p>{data.description}</p>
-      <RedirectOnMount targetUrl={params.slug} />
+      <RedirectOnMount />
     </>
   );
 };

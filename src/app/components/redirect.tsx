@@ -3,7 +3,7 @@
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 
-const RedirectOnMount = ({ targetUrl }: { targetUrl: string }) => {
+const RedirectOnMount = ({ targetUrl }: { targetUrl?: string }) => {
   const router = useRouter();
 
   //   useEffect(() => {
@@ -12,7 +12,10 @@ const RedirectOnMount = ({ targetUrl }: { targetUrl: string }) => {
 
   useEffect(() => {
     setTimeout(() => {
-      router.push(`https://testing.eventy.xyz/e/title/${targetUrl}`);
+      //   router.push(`https://testing.eventy.xyz/e/title/${targetUrl}`);
+      router.push(
+        `https://testing.eventy.xyz/event/testing-11-nov-2024/673213aa7e1e85e3fd7ccc7c`
+      );
     }, 1000);
   }, [router, targetUrl]);
 
