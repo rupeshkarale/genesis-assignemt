@@ -1,8 +1,6 @@
+import RedirectOnMount from "@/app/components/redirect";
 import axios from "axios";
-import { useEffect } from "react";
-import { useRouter } from "next/navigation";
 
-// Define the type for the data fetched from the backend
 interface PageData {
   title: string;
   description: string;
@@ -35,7 +33,7 @@ const fetchData = async (slug: string): Promise<PageData> => {
   }
 };
 
-// This function sets the dynamic Open Graph meta tags in the <head>
+// Set dynamic Open Graph metadata
 export async function generateMetadata({
   params,
 }: {
@@ -68,36 +66,17 @@ export async function generateMetadata({
   };
 }
 
-// Client component to handle redirect on mount
-const RedirectOnMount = ({
-  slug,
-  targetUrl,
-}: {
-  slug: string;
-  targetUrl: string;
-}) => {
-  const router = useRouter();
-
-  useEffect(() => {
-    // Redirect on client-side mount
-    router.push(targetUrl);
-  }, [router, targetUrl]);
-
-  return null; // Don't render anything during the redirect
-};
-
-// Server component to set metadata and render redirect logic
+// Main Page Component
 const Page = async ({ params }: { params: { slug: string } }) => {
   const data = await fetchData(params.slug);
 
-  // Define the target URL for redirect
   const targetUrl = `https://testing.eventy.xyz/e/${data.title}/${params.slug}`;
 
   return (
     <>
       <h1>{data.title}</h1>
       <p>{data.description}</p>
-      <RedirectOnMount slug={params.slug} targetUrl={targetUrl} />
+      <RedirectOnMount targetUrl={targetUrl} />
     </>
   );
 };
