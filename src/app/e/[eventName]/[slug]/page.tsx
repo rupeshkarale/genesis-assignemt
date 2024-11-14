@@ -45,10 +45,10 @@ export async function generateMetadata({
   const data = await fetchData(params.slug);
 
   return {
-    title: `${data.title} -- Join Us!`,
+    title: `${data.title}`,
     description: `You're invited to ${data.title}. Secure your spot now!`,
     openGraph: {
-      title: `${data.title} -- Join Us!`,
+      title: `${data.title}`,
       description: `You're invited to ${data.title}. Secure your spot now!`,
       images: [
         {
@@ -57,14 +57,22 @@ export async function generateMetadata({
           height: 600,
         },
       ],
-      url: data.url,
+      // url: data?.url,
+      url: `https://testing.eventy.xyz/e/${data.title}/${params.slug}`,
       type: "website",
     },
     twitter: {
       card: "summary_large_image",
-      title: `${data.title} -- Join Us!`,
+      title: `${data.title}`,
       description: `You're invited to ${data.title}. Secure your spot now!`,
-      images: [data.imageUrl],
+      images: [
+        {
+          url: data.imageUrl,
+
+          // width: 800,
+          // height: 600,
+        },
+      ],
     },
   };
 }
@@ -93,7 +101,7 @@ const Page = async ({ params }: { params: { slug: string } }) => {
       {/* <LinearProgress sx={{ width: "30%" }} />{" "} */}
       {/* </Box> */}
       {/* <SplashScreen /> */}
-      <RedirectOnMount />
+      {/* <RedirectOnMount /> */}
     </>
   );
 };
