@@ -1,4 +1,4 @@
-import LoadingScreen from "@/app/components/loadingScreen";
+import RedirectOnMount from "@/app/component/redirectOnMount";
 import { Box, LinearProgress } from "@mui/material";
 import axios from "axios";
 
@@ -69,26 +69,21 @@ export async function generateMetadata({
 
 // Main Page Component
 const Page = async ({ params }: { params: { slug: string } }) => {
-  const data = await fetchData(params.slug);
-
-  // const targetUrl = `https://testing.eventy.xyz/e/${data.title}/${params.slug}`;
-
   return (
     <>
       <Box
         sx={{
-          width: "100%", // Full width of the container
-          height: "100vh", // Full viewport height
-          display: "flex", // Use flexbox to align items
-          justifyContent: "center", // Horizontally center the content
-          alignItems: "center", // Vertically center the content
+          width: "100%",
+          height: "100vh",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
         }}
       >
-        <LinearProgress sx={{ width: "20%" }} />{" "}
-        {/* Optional: Adjust width of progress bar */}
+        <LinearProgress sx={{ width: "30%" }} />{" "}
       </Box>
 
-      {/* <RedirectOnMount /> */}
+      <RedirectOnMount />
     </>
   );
 };
