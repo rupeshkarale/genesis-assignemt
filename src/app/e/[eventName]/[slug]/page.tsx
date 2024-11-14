@@ -73,6 +73,14 @@ export async function generateMetadata({
           // height: 600,
         },
       ],
+      url: `https://testing.eventy.xyz/e/${data.title}/${params.slug}`,
+    },
+    whatsApp: {
+      title: `${data.title}`,
+      description: `You're invited to ${data.title}. Secure your spot now!`,
+      thumbnailUrl: data.imageUrl,
+      thumbnailWidth: 800,
+      thumbnailHeight: 800,
     },
   };
 }
