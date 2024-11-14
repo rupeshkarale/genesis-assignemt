@@ -1,8 +1,6 @@
-import RedirectOnMount from "@/app/components/redirect";
+import LoadingScreen from "@/app/components/loadingScreen";
+import { Box, LinearProgress } from "@mui/material";
 import axios from "axios";
-import dynamic from "next/dynamic";
-import Head from "next/head";
-import { useLayoutEffect } from "react";
 
 interface PageData {
   title: string;
@@ -77,9 +75,20 @@ const Page = async ({ params }: { params: { slug: string } }) => {
 
   return (
     <>
-      <h1>{data.title}</h1>
-      <p>{data.description}</p>
-      <RedirectOnMount />
+      <Box
+        sx={{
+          width: "100%", // Full width of the container
+          height: "100vh", // Full viewport height
+          display: "flex", // Use flexbox to align items
+          justifyContent: "center", // Horizontally center the content
+          alignItems: "center", // Vertically center the content
+        }}
+      >
+        <LinearProgress sx={{ width: "20%" }} />{" "}
+        {/* Optional: Adjust width of progress bar */}
+      </Box>
+
+      {/* <RedirectOnMount /> */}
     </>
   );
 };
