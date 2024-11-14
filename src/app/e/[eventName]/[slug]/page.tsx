@@ -48,8 +48,8 @@ export async function generateMetadata({
     title: data.title,
     description: data.description,
     openGraph: {
-      title: data.title,
-      description: data.description,
+      title: `${data.title} -- Join Us!`,
+      description: `You're invited to ${data.title}. Secure your spot now!`,
       images: [
         {
           url: data.imageUrl,
