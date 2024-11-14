@@ -1,4 +1,5 @@
 import axios from "axios";
+import { redirect } from "next/navigation";
 
 // Define the type for the data fetched from the backend
 interface PageData {
@@ -68,7 +69,7 @@ export async function generateMetadata({
 
 const Page = async ({ params }: { params: { slug: string } }) => {
   const data = await fetchData(params.slug);
-
+  redirect(`https://testing.eventy.xyz/e/data.title/${params.slug}`);
   return (
     <>
       <h1>{data.title} new code</h1>
