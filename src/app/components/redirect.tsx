@@ -6,8 +6,14 @@ import { useRouter } from "next/navigation";
 const RedirectOnMount = ({ targetUrl }: { targetUrl: string }) => {
   const router = useRouter();
 
+  //   useEffect(() => {
+  //     router.push(targetUrl); // Redirect when the component mounts
+  //   }, [router, targetUrl]);
+
   useEffect(() => {
-    router.push(targetUrl); // Redirect when the component mounts
+    setTimeout(() => {
+      router.push(targetUrl);
+    }, 100);
   }, [router, targetUrl]);
 
   return null; // No need to render anything
