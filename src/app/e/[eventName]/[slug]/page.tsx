@@ -62,8 +62,8 @@ export async function generateMetadata({
     },
     twitter: {
       card: "summary_large_image",
-      title: data.title,
-      description: data.description,
+      title: `${data.title} -- Join Us!`,
+      description: `You're invited to ${data.title}. Secure your spot now!`,
       images: [data.imageUrl],
     },
   };
