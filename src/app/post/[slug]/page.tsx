@@ -71,7 +71,7 @@ const Page = async ({ params }: { params: { slug: string } }) => {
 
   return (
     <>
-      <h1>{data.title}</h1>
+      <h1>{data.title} new code</h1>
       <p>{data.description}</p>
     </>
   );
