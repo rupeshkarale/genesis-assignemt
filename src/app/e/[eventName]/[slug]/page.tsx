@@ -93,7 +93,7 @@ const Page = async ({ params }: { params: { slug: string } }) => {
       {/* <LinearProgress sx={{ width: "30%" }} />{" "} */}
       {/* </Box> */}
       {/* <SplashScreen /> */}
-      {/* <RedirectOnMount /> */}
+      <RedirectOnMount />
     </>
   );
 };
