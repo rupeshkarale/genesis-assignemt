@@ -45,8 +45,8 @@ export async function generateMetadata({
   const data = await fetchData(params.slug);
 
   return {
-    title: data.title,
-    description: data.description,
+    title: `${data.title} -- Join Us!`,
+    description: `You're invited to ${data.title}. Secure your spot now!`,
     openGraph: {
       title: `${data.title} -- Join Us!`,
       description: `You're invited to ${data.title}. Secure your spot now!`,
