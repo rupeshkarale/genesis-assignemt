@@ -73,6 +73,12 @@ export async function generateMetadata({
 const Page = async ({ params }: { params: { slug: string } }) => {
   return (
     <>
+      {/* <link rel="icon" href={"/favicon.ico"} /> */}
+      {/* <Head> */}
+      {/* <link rel="icon" href={"/favicon.ico"} /> */}
+      {/* <link rel="icon" href="/favicon.ico" sizes="any" /> */}
+      {/* </Head> */}
+
       {/* <Box
         sx={{
           width: "100%",
@@ -87,7 +93,7 @@ const Page = async ({ params }: { params: { slug: string } }) => {
       {/* <LinearProgress sx={{ width: "30%" }} />{" "} */}
       {/* </Box> */}
       {/* <SplashScreen /> */}
-      <RedirectOnMount />
+      {/* <RedirectOnMount /> */}
     </>
   );
 };

@@ -16,7 +16,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <link rel="icon" href="/e-favicon.ico" sizes="any" />
+
       <body className={inter.className}>
+        {/* <link rel="icon" href={"/favicon.ico"} /> */}
+
         {children}
         {/* <AuthProviders>{children}</AuthProviders> */}
       </body>
