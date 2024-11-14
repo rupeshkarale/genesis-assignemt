@@ -1,6 +1,8 @@
 import RedirectOnMount from "@/app/component/redirectOnMount";
+import SplashScreen from "@/app/component/slash-screen";
 import { Box, LinearProgress } from "@mui/material";
 import axios from "axios";
+import { Suspense } from "react";
 
 interface PageData {
   title: string;
@@ -71,7 +73,7 @@ export async function generateMetadata({
 const Page = async ({ params }: { params: { slug: string } }) => {
   return (
     <>
-      <Box
+      {/* <Box
         sx={{
           width: "100%",
           height: "100vh",
@@ -79,10 +81,12 @@ const Page = async ({ params }: { params: { slug: string } }) => {
           justifyContent: "center",
           alignItems: "center",
         }}
-      >
-        <LinearProgress sx={{ width: "30%" }} />{" "}
-      </Box>
-
+      > */}
+      {/* <Suspense fallback={<SplashScreen />}>{<RedirectOnMount />}</Suspense> */}
+      <SplashScreen />
+      {/* <LinearProgress sx={{ width: "30%" }} />{" "} */}
+      {/* </Box> */}
+      {/* <SplashScreen /> */}
       <RedirectOnMount />
     </>
   );

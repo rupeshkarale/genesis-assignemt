@@ -9,7 +9,7 @@
   }
 }
 :root {
-  --foreground-rgb: 0, 0, 0;
+  --foreground-rgb: "#141A21";
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
 }
@@ -19,6 +19,10 @@
     --foreground-rgb: 255, 255, 255;
     --background-start-rgb: 0, 0, 0;
     --background-end-rgb: 0, 0, 0;
+  }
+
+  body {
+    background-color: "#141A21";
   }
 }
 
@@ -30,6 +34,7 @@ body {
       rgb(var(--background-end-rgb))
     )
     rgb(var(--background-start-rgb));
+  background-color: "#141A21";
 }
 
 @layer utilities {
@@ -41,4 +46,71 @@ body {
 .ProseMirror * {
   white-space: normal;
   word-break: break-word;
+}
+
+/* In globals.css or a module CSS file */
+@keyframes bounceInOut {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(0.9);
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes rotateCircle {
+  0% {
+    transform: rotate(0deg);
+    opacity: 0.25;
+    border-radius: 25%;
+  }
+  100% {
+    transform: rotate(360deg);
+    opacity: 1;
+    border-radius: 50%;
+  }
+}
+
+@keyframes pulseCircle {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+    border-radius: 25%;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 0.25;
+    border-radius: 50%;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+    border-radius: 25%;
+  }
+}
+
+.splash-logo {
+  animation: bounceInOut 2s ease-in-out infinite;
+}
+
+.splash-circle-one {
+  animation: rotateCircle 1.2s linear infinite;
+  position: absolute;
+  border: 3px solid rgba(161, 255, 208, 0.24);
+  width: 100px;
+  height: 100px;
+}
+
+.splash-circle-two {
+  animation: pulseCircle 1.2s linear infinite;
+  position: absolute;
+  border: 8px solid rgba(171, 122, 250, 0.24);
+  width: 120px;
+  height: 120px;
 }
