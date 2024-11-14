@@ -6,14 +6,17 @@ import { Content } from "./api/route";
 import Note from "./components/editor/Note";
 import { signOut, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import Head from "next/head";
 
 const Home: React.FC = () => {
   const [contentList, setContentList] = useState<Content[]>([]);
+  const [ogTags, setOgTags] = useState<any>(null); // Set to null initially
   const [editContent, setEditContent] = useState<Content | null>(null);
   const { data: session } = useSession();
   const router = useRouter();
+
   useEffect(() => {
-    fetchData();
+    fetchDataEvent();
   }, []);
 
   const fetchData = async () => {
@@ -25,22 +28,35 @@ const Home: React.FC = () => {
     }
   };
 
+  const fetchDataEvent = async () => {
+    try {
+      const response = await axios.get<Content[]>(
+        `https://testing-api.eventy.xyz/api/events/getEventById/673485ad7e1e85e3fd7d5772`
+      );
+      console.log("response.data", response.data);
+      setOgTags(response.data); // Set the fetched event data to ogTags state
+      // You can use setContentList here if you need to use that data for the content list as well
+    } catch (error) {
+      console.error("Error fetching event:", error);
+    }
+  };
+
   const handleEdit = async (id: string) => {
     try {
       const response = await axios.get<Content>(`/api?id=${id}`);
       setEditContent(response.data);
       window.scrollTo({ top: 0, behavior: "smooth" });
-      //it will edit after onSubmit click
     } catch (error) {
       console.error("Error fetching content for edit:", error);
     }
   };
+
   const handleDelete = async (id: string) => {
     try {
       await axios.delete(`/api?id=${id}`);
       await fetchData();
     } catch (error) {
-      console.error("Error fetching content for edit:", error);
+      console.error("Error deleting content:", error);
     }
   };
 
@@ -56,8 +72,30 @@ const Home: React.FC = () => {
     }
   };
 
+  // Default OG tags if no specific data is fetched
+  const defaultOgTags = {
+    title: "Default Title",
+    description: "Default Description",
+    image: "/default-image.jpg", // Fallback image
+  };
+
+  const dynamicOgTags = ogTags || defaultOgTags; // Use the fetched data if available, else fallback
+
   return (
     <div className="container mx-auto p-4">
+      <Head>
+        {/* Dynamically set OG tags */}
+        <meta property="og:title" content={dynamicOgTags.title} />
+        <meta property="og:description" content={dynamicOgTags.description} />
+        <meta property="og:image" content={dynamicOgTags.image} />
+        <meta property="og:type" content="website" />
+        {/* Optional: other OG tags */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={dynamicOgTags.title} />
+        <meta name="twitter:description" content={dynamicOgTags.description} />
+        <meta name="twitter:image" content={dynamicOgTags.image} />
+      </Head>
+
       <button
         onClick={handleLogin}
         type="button"
@@ -65,6 +103,7 @@ const Home: React.FC = () => {
       >
         {session ? "SIGN - OUT" : "SIGN-IN"}
       </button>
+
       <NotePicker
         editContent={editContent}
         clearEditContent={clearEditContent}
