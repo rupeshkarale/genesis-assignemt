@@ -1,5 +1,7 @@
 import RedirectOnMount from "@/app/components/redirect";
 import axios from "axios";
+import dynamic from "next/dynamic";
+import Head from "next/head";
 
 interface PageData {
   title: string;
@@ -70,13 +72,13 @@ export async function generateMetadata({
 const Page = async ({ params }: { params: { slug: string } }) => {
   const data = await fetchData(params.slug);
 
-  const targetUrl = `https://testing.eventy.xyz/e/${data.title}/${params.slug}`;
+  // const targetUrl = `https://testing.eventy.xyz/e/${data.title}/${params.slug}`;
 
   return (
     <>
       <h1>{data.title}</h1>
       <p>{data.description}</p>
-      <RedirectOnMount targetUrl={targetUrl} />
+      <RedirectOnMount targetUrl={params.slug} />
     </>
   );
 };

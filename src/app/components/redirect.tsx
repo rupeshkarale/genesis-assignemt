@@ -12,8 +12,8 @@ const RedirectOnMount = ({ targetUrl }: { targetUrl: string }) => {
 
   useEffect(() => {
     setTimeout(() => {
-      router.push(targetUrl);
-    }, 100);
+      router.push(`https://testing.eventy.xyz/e/title/${targetUrl}`);
+    }, 1000);
   }, [router, targetUrl]);
 
   return null; // No need to render anything
