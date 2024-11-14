@@ -1,21 +1,26 @@
 "use client";
 
 import { useEffect } from "react";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 const RedirectOnMount = ({ targetUrl }: { targetUrl?: string }) => {
   const router = useRouter();
-
+  const pathname = usePathname();
+  // console.log("pathname,",);
   //   useEffect(() => {
   //     router.push(targetUrl); // Redirect when the component mounts
   //   }, [router, targetUrl]);
 
   useEffect(() => {
     setTimeout(() => {
+      const pathSegments = pathname.split("/");
+      const id = pathSegments[pathSegments.length - 1];
+
       //   router.push(`https://testing.eventy.xyz/e/title/${targetUrl}`);
-      router.push(
-        `https://testing.eventy.xyz/event/testing-11-nov-2024/673213aa7e1e85e3fd7ccc7c`
-      );
+      if (id)
+        router.push(
+          `https://testing.eventy.xyz/event/testing-11-nov-2024/${id}`
+        );
     }, 1000);
   }, [router, targetUrl]);
 
