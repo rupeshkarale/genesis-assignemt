@@ -75,6 +75,12 @@ export async function generateMetadata({
           width: 300,
           height: 300,
         },
+        {
+          url: new URL(data?.imageUrl),
+          secureUrl: new URL(data?.imageUrl),
+          width: 200,
+          height: 100,
+        },
       ],
       // url: data?.url,
       url: `https://testing.eventy.xyz/e/${data.title}/${params.slug}`,
