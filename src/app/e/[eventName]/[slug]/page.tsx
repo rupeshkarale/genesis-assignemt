@@ -145,6 +145,8 @@ const Page = async ({ params }: { params: { slug: string } }) => {
             rel="canonical"
             href={`https://testing.eventy.xyz/e/${data.title}/${params.slug}`}
           />
+          <meta property="og:locale" content="en_US" />
+          <meta property="og:site_name" content="Eventy" />
         </Head>
       )}
       <SplashScreen />
