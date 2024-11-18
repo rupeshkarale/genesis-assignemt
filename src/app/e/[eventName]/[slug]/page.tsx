@@ -55,19 +55,22 @@ export async function generateMetadata({
       images: [
         {
           url: data?.imageUrl,
+          secureUrl: data?.imageUrl,
           width: 100,
           height: 100,
         },
-        // {
-        //   url: data?.imageUrl,
-        //   width: 1200,
-        //   height: 630,
-        // },
-        // {
-        //   url: data?.imageUrl,
-        //   width: 300,
-        //   height: 300,
-        // },
+        {
+          url: data?.imageUrl,
+          secureUrl: data?.imageUrl,
+          width: 1200,
+          height: 630,
+        },
+        {
+          url: data?.imageUrl,
+          secureUrl: data?.imageUrl,
+          width: 300,
+          height: 300,
+        },
       ],
       // url: data?.url,
       url: `https://testing.eventy.xyz/e/${data.title}/${params.slug}`,
@@ -87,13 +90,13 @@ export async function generateMetadata({
       ],
       url: `https://testing.eventy.xyz/e/${data.title}/${params.slug}`,
     },
-    whatsApp: {
-      title: `${data.title}`,
-      description: `You're invited to ${data.title}. Secure your spot now!`,
-      thumbnailUrl: data.imageUrl,
-      thumbnailWidth: 300,
-      thumbnailHeight: 300,
-    },
+    // whatsApp: {
+    //   title: `${data.title}`,
+    //   description: `You're invited to ${data.title}. Secure your spot now!`,
+    //   thumbnailUrl: data.imageUrl,
+    //   thumbnailWidth: 300,
+    //   thumbnailHeight: 300,
+    // },
     viewport: "width=device-width, initial-scale=1.0",
     author: "Eventy",
   };
