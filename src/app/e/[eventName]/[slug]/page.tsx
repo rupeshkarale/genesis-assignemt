@@ -38,61 +38,66 @@ const fetchData = async (slug: string): Promise<PageData> => {
 };
 
 // Set dynamic Open Graph metadata
-// export async function generateMetadata({
-//   params,
-// }: {
-//   params: { slug: string };
-// }) {
-//   const data = await fetchData(params.slug);
+export async function generateMetadata({
+  params,
+}: {
+  params: { slug: string };
+}) {
+  const data = await fetchData(params.slug);
 
-//   return {
-//     title: `${data.title}`,
-//     description: `You're invited to ${data.title}. Secure your spot now!`,
-//     openGraph: {
-//       title: `${data.title}`,
-//       description: `You're invited to ${data.title}. Secure your spot now!`,
-//       keywords: `event, concert, music, ${data.title}, tickets`,
-//       images: [
-//         {
-//           url: data?.imageUrl,
-//           width: 1200,
-//           height: 630,
-//         },
-//         {
-//           url: data?.imageUrl,
-//           width: 300,
-//           height: 300,
-//         },
-//       ],
-//       // url: data?.url,
-//       url: `https://testing.eventy.xyz/e/${data.title}/${params.slug}`,
-//       type: "website",
-//     },
-//     twitter: {
-//       card: "summary_large_image",
-//       title: `${data.title}`,
-//       description: `You're invited to ${data.title}. Secure your spot now!`,
-//       images: [
-//         {
-//           url: data.imageUrl,
+  return {
+    title: `${data.title}`,
+    description: `You're invited to ${data.title}. Secure your spot now!`,
+    openGraph: {
+      title: `${data.title}`,
+      description: `You're invited to ${data.title}. Secure your spot now!`,
+      keywords: `event, concert, music, ${data.title}, tickets`,
+      images: [
+        {
+          url: data?.imageUrl,
+          width: 100,
+          height: 100,
+        },
+        // {
+        //   url: data?.imageUrl,
+        //   width: 1200,
+        //   height: 630,
+        // },
+        // {
+        //   url: data?.imageUrl,
+        //   width: 300,
+        //   height: 300,
+        // },
+      ],
+      // url: data?.url,
+      url: `https://testing.eventy.xyz/e/${data.title}/${params.slug}`,
+      type: "website",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${data.title}`,
+      description: `You're invited to ${data.title}. Secure your spot now!`,
+      images: [
+        {
+          url: data.imageUrl,
 
-//           // width: 800,
-//           // height: 600,
-//         },
-//       ],
-//       url: `https://testing.eventy.xyz/e/${data.title}/${params.slug}`,
-//     },
-//     whatsApp: {
-//       title: `${data.title}`,
-//       description: `You're invited to ${data.title}. Secure your spot now!`,
-//       thumbnailUrl: data.imageUrl,
-//       thumbnailWidth: 300,
-//       thumbnailHeight: 300,
-//     },
-//     viewport: "width=device-width, initial-scale=1.0",
-//     author: "Eventy",
-//   };
-// }
+          // width: 800,
+          // height: 600,
+        },
+      ],
+      url: `https://testing.eventy.xyz/e/${data.title}/${params.slug}`,
+    },
+    whatsApp: {
+      title: `${data.title}`,
+      description: `You're invited to ${data.title}. Secure your spot now!`,
+      thumbnailUrl: data.imageUrl,
+      thumbnailWidth: 300,
+      thumbnailHeight: 300,
+    },
+    viewport: "width=device-width, initial-scale=1.0",
+    author: "Eventy",
+  };
+}
 
 // Main Page Component
 const Page = async ({ params }: { params: { slug: string } }) => {
