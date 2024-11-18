@@ -147,6 +147,17 @@ const Page = async ({ params }: { params: { slug: string } }) => {
           />
           <meta property="og:locale" content="en_US" />
           <meta property="og:site_name" content="Eventy" />
+          <link itemProp="thumbnailUrl" href={data.imageUrl} />
+          <span
+            itemProp="thumbnail"
+            itemScope
+            itemType="http://schema.org/ImageObject"
+          >
+            <link
+              itemProp="url"
+              href={`https://testing.eventy.xyz/e/${data.title}/${params.slug}`}
+            />
+          </span>
         </Head>
       )}
       <SplashScreen />
