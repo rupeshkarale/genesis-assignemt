@@ -122,6 +122,8 @@ const Page = async ({ params }: { params: { slug: string } }) => {
         <meta property="og:title" content={data.title} />
         <meta property="og:description" content={data.description} />
         <meta property="og:image" content={data.imageUrl} />
+        <meta property="og:image:type" content={data.imageUrl} />
+        <meta property="og:image:type" content="image/jpeg" />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
 
