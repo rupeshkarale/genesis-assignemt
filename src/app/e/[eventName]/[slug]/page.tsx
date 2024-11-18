@@ -50,11 +50,17 @@ export async function generateMetadata({
     openGraph: {
       title: `${data.title}`,
       description: `You're invited to ${data.title}. Secure your spot now!`,
+      keywords: "event, concert, music, Tribute Rock, tickets",
       images: [
         {
-          url: data.imageUrl,
-          width: 800,
-          height: 600,
+          url: data?.imageUrl,
+          width: 1200,
+          height: 630,
+        },
+        {
+          url: data?.imageUrl,
+          width: 400,
+          height: 400,
         },
       ],
       // url: data?.url,
@@ -82,6 +88,8 @@ export async function generateMetadata({
       thumbnailWidth: 800,
       thumbnailHeight: 800,
     },
+    viewport: "width=device-width, initial-scale=1.0",
+    author: "Eventy",
   };
 }
 
