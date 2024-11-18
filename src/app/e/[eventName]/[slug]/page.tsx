@@ -60,8 +60,8 @@ export async function generateMetadata({
         },
         {
           url: data?.imageUrl,
-          width: 400,
-          height: 400,
+          width: 300,
+          height: 300,
         },
       ],
       // url: data?.url,
@@ -86,8 +86,8 @@ export async function generateMetadata({
       title: `${data.title}`,
       description: `You're invited to ${data.title}. Secure your spot now!`,
       thumbnailUrl: data.imageUrl,
-      thumbnailWidth: 800,
-      thumbnailHeight: 800,
+      thumbnailWidth: 300,
+      thumbnailHeight: 300,
     },
     viewport: "width=device-width, initial-scale=1.0",
     author: "Eventy",
@@ -99,50 +99,54 @@ const Page = async ({ params }: { params: { slug: string } }) => {
   const data = await fetchData(params.slug);
   return (
     <>
-      <Head>
-        <meta charSet="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta name="title" content={data.title} />
-        <meta
-          name="description"
-          content={`You're invited to ${data.title}. Secure your spot now!`}
-        />
-        <meta name="author" content="Eventy" />
-        <meta
-          name="keywords"
-          content={`event, concert, music, ${data.title}, tickets`}
-        />
+      {data && (
+        <Head>
+          <meta charSet="utf-8" />
+          <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0"
+          />
+          <meta name="title" content={data.title} />
+          <meta
+            name="description"
+            content={`You're invited to ${data.title}. Secure your spot now!`}
+          />
+          <meta name="author" content="Eventy" />
+          <meta
+            name="keywords"
+            content={`event, concert, music, ${data.title}, tickets`}
+          />
 
-        {/* Open Graph Meta Tags */}
-        <meta property="og:type" content="website" />
-        <meta
-          property="og:url"
-          content={`https://testing.eventy.xyz/e/${data.title}/${params.slug}`}
-        />
-        <meta property="og:title" content={data.title} />
-        <meta property="og:description" content={data.description} />
-        <meta property="og:image" content={data.imageUrl} />
-        <meta property="og:image:type" content={data.imageUrl} />
-        <meta property="og:image:type" content="image/jpeg" />
-        <meta property="og:image:width" content="1200" />
-        <meta property="og:image:height" content="630" />
+          {/* Open Graph Meta Tags */}
+          <meta property="og:type" content="website" />
+          <meta
+            property="og:url"
+            content={`https://testing.eventy.xyz/e/${data.title}/${params.slug}`}
+          />
+          <meta property="og:title" content={data.title} />
+          <meta property="og:description" content={data.description} />
+          <meta property="og:image" content={data.imageUrl} />
+          <meta property="og:image:type" content="image/jpeg" />
+          <meta property="og:image:width" content="1200" />
+          <meta property="og:image:height" content="630" />
 
-        {/* Twitter Meta Tags */}
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta
-          name="twitter:url"
-          content={`https://testing.eventy.xyz/e/${data.title}/${params.slug}`}
-        />
-        <meta name="twitter:title" content={data.title} />
-        <meta name="twitter:description" content={data.description} />
-        <meta name="twitter:image" content={data.imageUrl} />
+          {/* Twitter Meta Tags */}
+          <meta name="twitter:card" content="summary_large_image" />
+          <meta
+            name="twitter:url"
+            content={`https://testing.eventy.xyz/e/${data.title}/${params.slug}`}
+          />
+          <meta name="twitter:title" content={data.title} />
+          <meta name="twitter:description" content={data.description} />
+          <meta name="twitter:image" content={data.imageUrl} />
 
-        {/* Canonical URL */}
-        <link
-          rel="canonical"
-          href={`https://testing.eventy.xyz/e/${data.title}/${params.slug}`}
-        />
-      </Head>
+          {/* Canonical URL */}
+          <link
+            rel="canonical"
+            href={`https://testing.eventy.xyz/e/${data.title}/${params.slug}`}
+          />
+        </Head>
+      )}
       <SplashScreen />
       {/* <LinearProgress sx={{ width: "30%" }} />{" "} */}
       {/* </Box> */}
