@@ -87,7 +87,7 @@ export async function generateMetadata({
         },
       ],
       // url: data?.url,
-      url: `https://testing.eventy.xyz/e/${data.title}/${params.slug}`,
+      // url: `https://testing.eventy.xyz/e/${data.title}/${params.slug}`,
       type: "website",
     },
     twitter: {
