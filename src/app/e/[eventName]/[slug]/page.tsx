@@ -3,13 +3,14 @@ import SplashScreen from "@/app/component/slash-screen";
 import { Box, LinearProgress } from "@mui/material";
 import axios from "axios";
 import Head from "next/head";
-import { Suspense } from "react";
 
 interface PageData {
   title: string;
   description: string;
   imageUrl: string;
   url: string;
+  venue: any;
+  startEventDate: string;
 }
 
 // Async function to fetch the data
@@ -17,16 +18,16 @@ const fetchData = async (slug: string): Promise<PageData> => {
   try {
     const res = await axios.get(
       `https://testing-api.eventy.xyz/api/events/getOgTagsByEventId/${slug}`
-      // `http://localhost:3001/api/events/getOgTagsByEventId/${slug}`
     );
 
     const ogTags = res.data.data;
-
     return {
       title: ogTags?.name || "",
       description: ogTags?.description || "",
       imageUrl: ogTags?.eventImageDataValue || "",
       url: ogTags?.eventPageUrl || "",
+      venue: ogTags?.venue,
+      startEventDate: ogTags?.startEventDate,
     };
   } catch (error) {
     console.error("Error fetching data", error);
@@ -35,11 +36,14 @@ const fetchData = async (slug: string): Promise<PageData> => {
       description: "",
       imageUrl: "",
       url: "",
+      venue: {
+        fullAddress: "",
+      },
+      startEventDate: "",
     };
   }
 };
 
-// Set dynamic Open Graph metadata
 export async function generateMetadata({
   params,
 }: {
@@ -117,70 +121,36 @@ const Page = async ({ params }: { params: { slug: string } }) => {
     <>
       {data && (
         <Head>
-          <meta charSet="utf-8" />
-          <meta
-            name="viewport"
-            content="width=device-width, initial-scale=1.0"
-          />
-          <meta name="title" content={data.title} />
-          <meta
-            name="description"
-            content={`You're invited to ${data.title}. Secure your spot now!`}
-          />
-          <meta name="author" content="Eventy" />
-          <meta
-            name="keywords"
-            content={`event, concert, music, ${data.title}, tickets`}
-          />
-
-          {/* Open Graph Meta Tags */}
-          <meta property="og:type" content="website" />
-          <meta
-            property="og:url"
-            content={`https://testing.eventy.xyz/e/${data.title}/${params.slug}`}
-          />
-          <meta property="og:title" content={data.title} />
-          <meta property="og:description" content={data.description} />
-          <meta property="og:image" content={data.imageUrl} />
-          <meta property="og:image:type" content="image/jpeg" />
-          <meta property="og:image:width" content="1200" />
-          <meta property="og:image:height" content="630" />
-
-          {/* Twitter Meta Tags */}
-          <meta name="twitter:card" content="summary_large_image" />
-          <meta
-            name="twitter:url"
-            content={`https://testing.eventy.xyz/e/${data.title}/${params.slug}`}
-          />
-          <meta name="twitter:title" content={data.title} />
-          <meta name="twitter:description" content={data.description} />
-          <meta name="twitter:image" content={data.imageUrl} />
-
-          {/* Canonical URL */}
-          <link
-            rel="canonical"
-            href={`https://testing.eventy.xyz/e/${data.title}/${params.slug}`}
-          />
-          <meta property="og:locale" content="en_US" />
-          <meta property="og:site_name" content="Eventy" />
-          <link itemProp="thumbnailUrl" href={data.imageUrl} />
-          <span
-            itemProp="thumbnail"
-            itemScope
-            itemType="http://schema.org/ImageObject"
-          >
-            <link
-              itemProp="url"
-              href={`https://testing.eventy.xyz/e/${data.title}/${params.slug}`}
-            />
-          </span>
+          <script type="application/ld+json">
+            {JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Event",
+              name: data.title,
+              description: data.title,
+              startDate: data.startEventDate,
+              endDate: data.startEventDate,
+              location: {
+                "@type": "Place",
+                name: data?.venue?.fullAddress,
+                address: {
+                  "@type": "PostalAddress",
+                  streetAddress: data?.venue?.fullAddress,
+                },
+              },
+              image: data.imageUrl,
+              url: `https://testing.eventy.xyz/e/${data.title}/${params.slug}`,
+              eventStatus: "https://schema.org/EventScheduled",
+              eventAttendanceMode:
+                "https://schema.org/OfflineEventAttendanceMode",
+            })}
+          </script>
         </Head>
       )}
       <SplashScreen />
       {/* <LinearProgress sx={{ width: "30%" }} />{" "} */}
       {/* </Box> */}
       {/* <SplashScreen /> */}
-      <RedirectOnMount />
+      {/* <RedirectOnMount /> */}
     </>
   );
 };

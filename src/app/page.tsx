@@ -1,4 +1,3 @@
-import { GetServerSideProps } from "next";
 import { redirect } from "next/navigation";
 import React from "react";
 
