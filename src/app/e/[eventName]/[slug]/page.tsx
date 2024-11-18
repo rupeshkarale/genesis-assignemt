@@ -50,7 +50,7 @@ export async function generateMetadata({
     openGraph: {
       title: `${data.title}`,
       description: `You're invited to ${data.title}. Secure your spot now!`,
-      keywords: "event, concert, music, Tribute Rock, tickets",
+      keywords: `event, concert, music, ${data.title}, tickets`,
       images: [
         {
           url: data?.imageUrl,
