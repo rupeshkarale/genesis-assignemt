@@ -54,20 +54,20 @@ export async function generateMetadata({
       keywords: `event, concert, music, ${data.title}, tickets`,
       images: [
         {
-          url: data?.imageUrl,
-          secureUrl: data?.imageUrl,
+          url: new URL(data?.imageUrl),
+          secureUrl: new URL(data?.imageUrl),
           width: 640,
           height: 360,
         },
         {
-          url: data?.imageUrl,
-          secureUrl: data?.imageUrl,
+          url: new URL(data?.imageUrl),
+          secureUrl: new URL(data?.imageUrl),
           width: 1200,
           height: 630,
         },
         {
-          url: data?.imageUrl,
-          secureUrl: data?.imageUrl,
+          url: new URL(data?.imageUrl),
+          secureUrl: new URL(data?.imageUrl),
           width: 300,
           height: 300,
         },
