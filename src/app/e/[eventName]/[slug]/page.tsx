@@ -2,6 +2,7 @@ import RedirectOnMount from "@/app/component/redirectOnMount";
 import SplashScreen from "@/app/component/slash-screen";
 import { Box, LinearProgress } from "@mui/material";
 import axios from "axios";
+import Head from "next/head";
 import { Suspense } from "react";
 
 interface PageData {
@@ -95,24 +96,51 @@ export async function generateMetadata({
 
 // Main Page Component
 const Page = async ({ params }: { params: { slug: string } }) => {
+  const data = await fetchData(params.slug);
   return (
     <>
-      {/* <link rel="icon" href={"/favicon.ico"} /> */}
-      {/* <Head> */}
-      {/* <link rel="icon" href={"/favicon.ico"} /> */}
-      {/* <link rel="icon" href="/favicon.ico" sizes="any" /> */}
-      {/* </Head> */}
+      <Head>
+        <meta charSet="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="title" content={data.title} />
+        <meta
+          name="description"
+          content={`You're invited to ${data.title}. Secure your spot now!`}
+        />
+        <meta name="author" content="Eventy" />
+        <meta
+          name="keywords"
+          content={`event, concert, music, ${data.title}, tickets`}
+        />
 
-      {/* <Box
-        sx={{
-          width: "100%",
-          height: "100vh",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      > */}
-      {/* <Suspense fallback={<SplashScreen />}>{<RedirectOnMount />}</Suspense> */}
+        {/* Open Graph Meta Tags */}
+        <meta property="og:type" content="website" />
+        <meta
+          property="og:url"
+          content={`https://testing.eventy.xyz/e/${data.title}/${params.slug}`}
+        />
+        <meta property="og:title" content={data.title} />
+        <meta property="og:description" content={data.description} />
+        <meta property="og:image" content={data.imageUrl} />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+
+        {/* Twitter Meta Tags */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta
+          name="twitter:url"
+          content={`https://testing.eventy.xyz/e/${data.title}/${params.slug}`}
+        />
+        <meta name="twitter:title" content={data.title} />
+        <meta name="twitter:description" content={data.description} />
+        <meta name="twitter:image" content={data.imageUrl} />
+
+        {/* Canonical URL */}
+        <link
+          rel="canonical"
+          href={`https://testing.eventy.xyz/e/${data.title}/${params.slug}`}
+        />
+      </Head>
       <SplashScreen />
       {/* <LinearProgress sx={{ width: "30%" }} />{" "} */}
       {/* </Box> */}
