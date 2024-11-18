@@ -48,6 +48,8 @@ export async function generateMetadata({
   return {
     title: `${data.title}`,
     description: `You're invited to ${data.title}. Secure your spot now!`,
+    viewport: "width=device-width, initial-scale=1.0",
+    author: "Eventy",
     openGraph: {
       title: `${data.title}`,
       description: `You're invited to ${data.title}. Secure your spot now!`,
@@ -97,8 +99,6 @@ export async function generateMetadata({
     //   thumbnailWidth: 300,
     //   thumbnailHeight: 300,
     // },
-    viewport: "width=device-width, initial-scale=1.0",
-    author: "Eventy",
   };
 }
 
