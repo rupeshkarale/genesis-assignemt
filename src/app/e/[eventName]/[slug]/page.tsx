@@ -67,7 +67,7 @@ export async function generateMetadata({
           url: new URL(data?.imageUrl),
           secureUrl: new URL(data?.imageUrl),
           width: 1200,
-          height: 630,
+          height: 640,
         },
         {
           url: new URL(data?.imageUrl),
