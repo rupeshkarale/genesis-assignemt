@@ -17,8 +17,10 @@ const fetchData = async (slug: string): Promise<PageData> => {
   try {
     const res = await axios.get(
       `https://testing-api.eventy.xyz/api/events/getOgTagsByEventId/${slug}`
+      // `http://localhost:3001/api/events/getOgTagsByEventId/${slug}`
     );
-    const ogTags = res.data;
+
+    const ogTags = res.data.data;
 
     return {
       title: ogTags?.name || "",
