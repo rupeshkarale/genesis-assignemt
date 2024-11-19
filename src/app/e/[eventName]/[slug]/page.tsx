@@ -67,24 +67,24 @@ export async function generateMetadata({
           // url: new URL(data?.imageUrl),
           // secureUrl: new URL(data?.imageUrl),
 
-          url: "https://eventybucket.s3.amazonaws.com/1732001055269-cropped.png",
+          url: "https://eventybucket.s3.amazonaws.com/1732001498967-cropped.png",
           secureUrl:
-            "https://eventybucket.s3.amazonaws.com/1732001055269-cropped.png",
+            "https://eventybucket.s3.amazonaws.com/1732001498967-cropped.png",
           width: 640,
           height: 360,
         },
         {
           // url: new URL(data?.imageUrl),
-          url: "https://eventybucket.s3.amazonaws.com/1732001055269-cropped.png",
+          url: "https://eventybucket.s3.amazonaws.com/1732001498967-cropped.png",
           secureUrl:
-            "https://eventybucket.s3.amazonaws.com/1732001055269-cropped.png",
+            "https://eventybucket.s3.amazonaws.com/1732001498967-cropped.png",
           width: 1200,
           height: 630,
         },
         {
-          url: "https://eventybucket.s3.amazonaws.com/1732001055269-cropped.png",
+          url: "https://eventybucket.s3.amazonaws.com/1732001498967-cropped.png",
           secureUrl:
-            "https://eventybucket.s3.amazonaws.com/1732001055269-cropped.png",
+            "https://eventybucket.s3.amazonaws.com/1732001498967-cropped.png",
           width: 300,
           height: 300,
         },
