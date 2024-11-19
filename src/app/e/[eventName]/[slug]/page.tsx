@@ -67,24 +67,24 @@ export async function generateMetadata({
           // url: new URL(data?.imageUrl),
           // secureUrl: new URL(data?.imageUrl),
 
-          url: "https://open.spotifycdn.com/cdn/images/og-image.548bc4b7.png",
+          url: "https://eventybucket.s3.amazonaws.com/1732001055269-cropped.png",
           secureUrl:
-            "https://open.spotifycdn.com/cdn/images/og-image.548bc4b7.png",
+            "https://eventybucket.s3.amazonaws.com/1732001055269-cropped.png",
           width: 640,
           height: 360,
         },
         {
           // url: new URL(data?.imageUrl),
-          url: "https://open.spotifycdn.com/cdn/images/og-image.548bc4b7.png",
+          url: "https://eventybucket.s3.amazonaws.com/1732001055269-cropped.png",
           secureUrl:
-            "https://open.spotifycdn.com/cdn/images/og-image.548bc4b7.png",
+            "https://eventybucket.s3.amazonaws.com/1732001055269-cropped.png",
           width: 1200,
           height: 630,
         },
         {
-          url: "https://open.spotifycdn.com/cdn/images/og-image.548bc4b7.png",
+          url: "https://eventybucket.s3.amazonaws.com/1732001055269-cropped.png",
           secureUrl:
-            "https://open.spotifycdn.com/cdn/images/og-image.548bc4b7.png",
+            "https://eventybucket.s3.amazonaws.com/1732001055269-cropped.png",
           width: 300,
           height: 300,
         },
