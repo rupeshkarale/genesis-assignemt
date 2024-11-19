@@ -60,22 +60,31 @@ export async function generateMetadata({
       title: `${data.title}`,
       description: `You're invited to ${data.title}. Secure your spot now!`,
       keywords: `event, concert, music, ${data.title}, tickets`,
+      site_name: "eventy",
+      siteName: "eventy",
       images: [
         {
-          url: new URL(data?.imageUrl),
-          secureUrl: new URL(data?.imageUrl),
+          // url: new URL(data?.imageUrl),
+          // secureUrl: new URL(data?.imageUrl),
+
+          url: "https://open.spotifycdn.com/cdn/images/og-image.548bc4b7.png",
+          secureUrl:
+            "https://open.spotifycdn.com/cdn/images/og-image.548bc4b7.png",
           width: 640,
           height: 360,
         },
         {
-          url: new URL(data?.imageUrl),
-          secureUrl: new URL(data?.imageUrl),
+          // url: new URL(data?.imageUrl),
+          url: "https://open.spotifycdn.com/cdn/images/og-image.548bc4b7.png",
+          secureUrl:
+            "https://open.spotifycdn.com/cdn/images/og-image.548bc4b7.png",
           width: 1200,
           height: 630,
         },
         {
-          url: new URL(data?.imageUrl),
-          secureUrl: new URL(data?.imageUrl),
+          url: "https://open.spotifycdn.com/cdn/images/og-image.548bc4b7.png",
+          secureUrl:
+            "https://open.spotifycdn.com/cdn/images/og-image.548bc4b7.png",
           width: 300,
           height: 300,
         },
@@ -87,7 +96,7 @@ export async function generateMetadata({
         },
       ],
       // url: data?.url,
-      // url: `https://testing.eventy.xyz/e/${data.title}/${params.slug}`,
+      url: `https://testing.eventy.xyz/e/${data.title}/${params.slug}`,
       type: "website",
     },
     twitter: {
