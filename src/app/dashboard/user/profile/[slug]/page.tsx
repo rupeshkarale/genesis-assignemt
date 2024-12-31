@@ -171,7 +171,7 @@ export async function generateMetadata({
 
   const base64Image = Buffer.from(svgBlobUrl).toString("base64");
 
-  const imageUrl = `data:image/png;base64,${base64Image}`;
+  const imageUrl = `https://genesis-assignemt.vercel.app/data:image/png;base64,${base64Image}`;
 
   const eventUrl = `https://testing.eventy.xyz/dashboard/user/profile/${params?.slug}`;
   const description = `Follow me on Eventy to get the latest updates and events.`;
