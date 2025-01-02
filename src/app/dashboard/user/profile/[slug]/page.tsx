@@ -159,7 +159,7 @@ export async function generateMetadata({
 }: {
   params: { slug: string };
 }) {
-  const data = await fetchData(params.slug);
+  const data: any = await fetchData(params.slug);
 
   // Fetch and customize SVG
   const svgBlobUrl = await fetchAndCustomizeSVG(
@@ -171,8 +171,9 @@ export async function generateMetadata({
 
   const base64Image = Buffer.from(svgBlobUrl).toString("base64");
 
-  const imageUrl = `https://genesis-assignemt.vercel.app/data:image/png;base64,${base64Image}`;
-
+  // const imageUrl = `https://genesis-assignemt.vercel.app/data:image/png;base64,${base64Image}`;
+  const imageUrl = new URL(data?.profileCard?.url);
+  console.log("imageUrl", imageUrl);
   const eventUrl = `https://testing.eventy.xyz/dashboard/user/profile/${params?.slug}`;
   const description = `Follow me on Eventy to get the latest updates and events.`;
 
@@ -244,7 +245,7 @@ export async function generateMetadata({
 }
 // Main Page Component
 const Page = async ({ params }: { params: { slug: string } }) => {
-  const data = await fetchData(params.slug);
+  const data: any = await fetchData(params.slug);
   // Fetch and customize SVG
   const svgBlobUrl = await fetchAndCustomizeSVG(
     "/pass-design.svg",
@@ -258,7 +259,7 @@ const Page = async ({ params }: { params: { slug: string } }) => {
   const base64Image = Buffer.from(svgBlobUrl).toString("base64");
 
   // Create image URL with base64-encoded PNG
-  const imageUrl = `data:image/png;base64,${base64Image}`;
+  const imageUrl = data?.profileCard?.url;
   const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" stroke="black" stroke-width="3" fill="red" /></svg>`;
 
   // If you want to use the SVG directly in the Open Graph metadata, base64 encode it
