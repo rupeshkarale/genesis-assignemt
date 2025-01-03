@@ -172,7 +172,13 @@ export async function generateMetadata({
   const base64Image = Buffer.from(svgBlobUrl).toString("base64");
 
   // const imageUrl = `https://genesis-assignemt.vercel.app/data:image/png;base64,${base64Image}`;
-  const imageUrl = new URL(data?.profileCard?.url);
+  const imageUrl = (() => {
+    try {
+      return new URL(data?.profileCardData);
+    } catch {
+      return "";
+    }
+  })();
   console.log("imageUrl", imageUrl);
   const eventUrl = `https://testing.eventy.xyz/dashboard/user/profile/${params?.slug}`;
   const description = `Follow me on Eventy to get the latest updates and events.`;
@@ -245,61 +251,34 @@ export async function generateMetadata({
 }
 // Main Page Component
 const Page = async ({ params }: { params: { slug: string } }) => {
-  const data: any = await fetchData(params.slug);
-  // Fetch and customize SVG
-  const svgBlobUrl = await fetchAndCustomizeSVG(
-    "/pass-design.svg",
-    data?.name || "Name",
-    data?.walletAddress,
-    data?._id?.slice(-5)
-  );
+  // const data: any = await fetchData(params.slug);
+  // // Fetch and customize SVG
+  // const svgBlobUrl = await fetchAndCustomizeSVG(
+  //   "/pass-design.svg",
+  //   data?.name || "Name",
+  //   data?.walletAddress,
+  //   data?._id?.slice(-5)
+  // );
 
-  // Create imageUrl with base64 encoded SVG
-  // const imageUrl = `data:image/svg+xml;base64,${svgBlobUrl}`;
-  const base64Image = Buffer.from(svgBlobUrl).toString("base64");
+  // // Create imageUrl with base64 encoded SVG
+  // // const imageUrl = `data:image/svg+xml;base64,${svgBlobUrl}`;
+  // const base64Image = Buffer.from(svgBlobUrl).toString("base64");
 
-  // Create image URL with base64-encoded PNG
-  const imageUrl = data?.profileCard?.url;
-  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" stroke="black" stroke-width="3" fill="red" /></svg>`;
+  // // Create image URL with base64-encoded PNG
+  // const imageUrl = data?.profileCard?.url;
+  // const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" stroke="black" stroke-width="3" fill="red" /></svg>`;
 
-  // If you want to use the SVG directly in the Open Graph metadata, base64 encode it
-  const base64Svg = `data:image/svg+xml;base64,${Buffer.from(svg).toString(
-    "base64"
-  )}`;
+  // // If you want to use the SVG directly in the Open Graph metadata, base64 encode it
+  // const base64Svg = `data:image/svg+xml;base64,${Buffer.from(svg).toString(
+  //   "base64"
+  // )}`;
 
   return (
     <>
-      {data && (
-        <Head>
-          <script type="application/ld+json">
-            {JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "Event",
-              name: data?.name,
-              description: data.name,
-              // startDate: data.startEventDate,
-              // endDate: data.startEventDate,
-              // location: {
-              //   "@type": "Place",
-              //   name: data?.venue?.fullAddress,
-              //   address: {
-              //     "@type": "PostalAddress",
-              //     streetAddress: data?.venue?.fullAddress,
-              //   },
-              // },
-              // image: data.imageUrl,
-              // url: `https://testing.eventy.xyz/e/${data.title}/${params.slug}`,
-              eventStatus: "https://schema.org/EventScheduled",
-              eventAttendanceMode:
-                "https://schema.org/OfflineEventAttendanceMode",
-            })}
-          </script>
-        </Head>
-      )}
-      <div>
+      {/* <div>
         <img src={imageUrl} alt="Customized SVG" width="300" height="300" />
-      </div>
-      {/* <SplashScreen /> */}
+      </div> */}
+      <SplashScreen />
 
       {/* <RedirectOnMount /> */}
     </>
