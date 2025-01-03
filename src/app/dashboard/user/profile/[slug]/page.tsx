@@ -1,5 +1,6 @@
 import RedirectOnMount from "@/app/component/redirectOnMount";
 import SplashScreen from "@/app/component/slash-screen";
+import UserRedirectOnMount from "@/app/component/userRedirectOnMount";
 import axios from "axios";
 import Head from "next/head";
 import sharp from "sharp";
@@ -179,7 +180,6 @@ export async function generateMetadata({
       return "";
     }
   })();
-  console.log("imageUrl", imageUrl);
   const eventUrl = `https://testing.eventy.xyz/dashboard/user/profile/${params?.slug}`;
   const description = `Follow me on Eventy to get the latest updates and events.`;
 
@@ -251,36 +251,11 @@ export async function generateMetadata({
 }
 // Main Page Component
 const Page = async ({ params }: { params: { slug: string } }) => {
-  // const data: any = await fetchData(params.slug);
-  // // Fetch and customize SVG
-  // const svgBlobUrl = await fetchAndCustomizeSVG(
-  //   "/pass-design.svg",
-  //   data?.name || "Name",
-  //   data?.walletAddress,
-  //   data?._id?.slice(-5)
-  // );
-
-  // // Create imageUrl with base64 encoded SVG
-  // // const imageUrl = `data:image/svg+xml;base64,${svgBlobUrl}`;
-  // const base64Image = Buffer.from(svgBlobUrl).toString("base64");
-
-  // // Create image URL with base64-encoded PNG
-  // const imageUrl = data?.profileCard?.url;
-  // const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" stroke="black" stroke-width="3" fill="red" /></svg>`;
-
-  // // If you want to use the SVG directly in the Open Graph metadata, base64 encode it
-  // const base64Svg = `data:image/svg+xml;base64,${Buffer.from(svg).toString(
-  //   "base64"
-  // )}`;
-
   return (
     <>
-      {/* <div>
-        <img src={imageUrl} alt="Customized SVG" width="300" height="300" />
-      </div> */}
       <SplashScreen />
 
-      {/* <RedirectOnMount /> */}
+      <UserRedirectOnMount />
     </>
   );
 };
